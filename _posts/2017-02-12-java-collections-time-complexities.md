@@ -25,6 +25,12 @@ The primary advantages of a collections framework are that it:
 
 Following are the time complexities of different data structures and their implementations in the Collections framework.
 
+| Header1 | Header2 | Header3 |
+| --------| ------- |-------- |
+| cell1   | cell2   | cell3   |
+| cell4   | cell5   | cell6   |
+
+
 ## List
 _A list is an ordered collection of elements._
 ```
@@ -57,8 +63,8 @@ _A collection designed for holding elements prior to processing._
 ```
 Queue<E>
 ```
-|Data Structure| Offer | Peak | Poll | Size | Based On |
-|:-------------|:-----:|:----:|:----:|:----:|:--------:|
+| Data Structure | Offer | Peak | Poll | Size | Based On |
+| -------------- |:-----:|:----:|:----:|:----:|:--------:|
 | PriorityQueue | O(log n ) | O(1) | O(log n) | O(1) | Priority Heap |
 LinkedList |  O(1) | O(1) | O(1) | O(1) | Array
 ArrayDequeue |  O(1) | O(1) | O(1) | O(1) | Linked List
