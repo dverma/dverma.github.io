@@ -25,12 +25,6 @@ The primary advantages of a collections framework are that it:
 
 Following are the time complexities of different data structures and their implementations in the Collections framework.
 
-| Header1 | Header2 | Header3 |
-| ------- | ------- | ------- |
-| cell1   | cell2   | cell3   |
-| cell4   | cell5   | cell6   |
-
-
 ## List
 _A list is an ordered collection of elements._
 ```
@@ -81,16 +75,16 @@ _An object that maps keys to values. A map cannot duplicate keys; each key can m
 ```
 Map<K,V>
 ```
-Data Structure | Get | ContainsKey | Next | Based On
----------------|-----|-------------|------|---------
-HashMap | O(1) | O(1) | O(h / n) | Hash Table
-LinkedHashMap | O(1) | O(1) | O(1) | Hash Table + Linked List
-IdentityHashMap | O(1) | O(1) | O(h / n) | Array
-WeakHashMap | O(1) | O(1) | O(h / n) | Hash Table
-EnumMap | O(1) | O(1) | O(1) | Array
-TreeMap | O(log n) | O(log n) | O(log n) | Red-black tree
-ConcurrentHashMap | O(1) | O(1) | O(h / n) | Hash Tables
-ConcurrentSkipListMap | O(log n) | O(log n) | O(1) | Skip List
+| Data Structure | Get | ContainsKey | Next | Based On |
+| -------------- | --- | ----------- | ---- | -------- |
+| HashMap | O(1) | O(1) | O(h / n) | Hash Table |
+| LinkedHashMap | O(1) | O(1) | O(1) | Hash Table + Linked List |
+| IdentityHashMap | O(1) | O(1) | O(h / n) | Array |
+| WeakHashMap | O(1) | O(1) | O(h / n) | Hash Table |
+| EnumMap | O(1) | O(1) | O(1) | Array |
+| TreeMap | O(log n) | O(log n) | O(log n) | Red-black tree |
+| ConcurrentHashMap | O(1) | O(1) | O(h / n) | Hash Tables |
+| ConcurrentSkipListMap | O(log n) | O(log n) | O(1) | Skip List |
 
 ### References:
 >[Collections Overview](http://docs.oracle.com/javase/6/docs/technotes/guides/collections/overview.html) has a nice summary table.
