@@ -27,28 +27,30 @@ Following are the time complexities of different data structures and their imple
 
 ## List
 _A list is an ordered collection of elements._
-```java
+```
 List<E>
 ```
-Data Structure | Add | Remove | Get | Contains | Based On
--------------- | --- | ------ | --- | -------- | --------
-ArrayList |  O(1) | O(n) | O(1) | O(n) | Array
-LinkedList | O(1) | O(1) | O(n) | O(n) | Linked List
-CopyonWriteArrayList |  O(n) | O(n) | O(1) | O(n) | Array
+| Data Structure | Add | Remove | Get | Contains | Based On |
+|:---------------|:---:|:------:|:---:|:--------:|:--------:|
+|ArrayList |  O(1) | O(n) | O(1) | O(n) | Array |
+|LinkedList | O(1) | O(1) | O(n) | O(n) | Linked List |
+|CopyonWriteArrayList |  O(n) | O(n) | O(1) | O(n) | Array |
+{: rules="groups"}
 
 ## Set
 _A collection that contains no duplicate elements._
 ```
 Set<E>
 ```
-|Data Structure | Add | Contains | Next | Based On |
-|:--------------|:---:|:--------:|:----:|:--------:|
-HashSet | O(1) | O(1) | O(h/n) | Hash Table |
-LinkedHashSet | O(1) | O(1) | O(1) | Hash Table + Linked List |
-EnumSet | O(1) | O(1) | O(1) | Bit Vector |
-TreeSet | O(log n) | O(log n) | O(log n) | Red-black tree |
-CopyonWriteArraySet | O(n) | O(n) | O(1) | Array |
-ConcurrentSkipList | O(log n) | O(log n) | O(1) | Skip List |
+| Data Structure | Add | Contains | Next | Based On |
+|:---------------|:---:|:--------:|:----:|:--------:|
+| HashSet | O(1) | O(1) | O(h/n) | Hash Table |
+| LinkedHashSet | O(1) | O(1) | O(1) | Hash Table + Linked List |
+| EnumSet | O(1) | O(1) | O(1) | Bit Vector |
+| TreeSet | O(log n) | O(log n) | O(log n) | Red-black tree |
+| CopyonWriteArraySet | O(n) | O(n) | O(1) | Array |
+| ConcurrentSkipList | O(log n) | O(log n) | O(1) | Skip List |
+{: rules="groups"}
 
 ## Queue
 _A collection designed for holding elements prior to processing._
@@ -56,8 +58,8 @@ _A collection designed for holding elements prior to processing._
 Queue<E>
 ```
 |Data Structure| Offer | Peak | Poll | Size | Based On |
-|:--------------|-------|------|------|------|---------
-PriorityQueue | O(log n ) | O(1) | O(log n) | O(1) | Priority Heap
+|:-------------|:-----:|:----:|:----:|:----:|:--------:|
+| PriorityQueue | O(log n ) | O(1) | O(log n) | O(1) | Priority Heap |
 LinkedList |  O(1) | O(1) | O(1) | O(1) | Array
 ArrayDequeue |  O(1) | O(1) | O(1) | O(1) | Linked List
 ConcurrentLinkedQueue |  O(1) | O(1) | O(1) | O(n) | Linked List
@@ -66,6 +68,7 @@ PriorirityBlockingQueue | O(log n) | O(1) | O(log n) | O(1) | Priority Heap
 SynchronousQueue | O(1) | O(1) | O(1) | O(1) | None!
 DelayQueue | O(log n) | O(1) | O(log n) | O(1) | Priority Heap
 LinkedBlockingQueue | O(1) | O(1) | O(1) | O(1) | Linked List
+{: rules="groups"}
 
 ## Map
 _An object that maps keys to values. A map cannot duplicate keys; each key can map to at most one value._
