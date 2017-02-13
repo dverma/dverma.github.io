@@ -5,14 +5,13 @@ tags: [about, dhawal]
 date: 2017-02-12
 comments: false
 ---
-
 <center>
-{% capture images %}
-    http://ghostblog-dhawal.rhcloud.com/content/images/2015/09/IMG_5028-1-1.JPG
-{% endcapture %}
-code_monkey|metalhead|juventino
+<figure>
+	<img src="http://ghostblog-dhawal.rhcloud.com/content/images/2015/09/IMG_5028-1-1.JPG">
+	<figcaption>Poser Alert!!!</figcaption>
+</figure>
+code_monkey | metalhead | juventino
 </center>
-
 ##Hi!
 
 Welcome to Dhawal Verma's place on the interwebs.
