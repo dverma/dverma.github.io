@@ -6,15 +6,14 @@ date: 2017-02-12
 comments: false
 ---
 <center>
-<figure>
-	<img src="http://ghostblog-dhawal.rhcloud.com/content/images/2015/09/IMG_5028-1-1.JPG">
-	<figcaption>Poser Alert!!!</figcaption>
-</figure>
+<img style="border-radius: 50%;height: 50%;  
+    width: 50%;" src="/content/images/2015/09/IMG_5028-1-1.JPG" title="POSER ALERT! Yes, that's me posing with my guitar that I can barely play!">
 code_monkey | metalhead | juventino
 </center>
-##Hi!
 
-Welcome to Dhawal Verma's place on the interwebs.
+## Hi!
+
+Welcome to my corner on ze interwebs.
 I'm a Software Engineer by profession, who happens to love football, music and traveling.
 I'm also passionate about learning guitar, different styles of architecture and different technologies.
 
