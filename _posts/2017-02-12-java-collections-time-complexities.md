@@ -26,7 +26,7 @@ The primary advantages of a collections framework are that it:
 Following are the time complexities of different data structures and their implementations in the Collections framework.
 
 | Header1 | Header2 | Header3 |
-| --------| ------- |-------- |
+| ------- | ------- | ------- |
 | cell1   | cell2   | cell3   |
 | cell4   | cell5   | cell6   |
 
