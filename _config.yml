@@ -1,7 +1,7 @@
 # Site
 title:              Dhawal Verma
-bio:                'code_monkey, metalhead, juventino'
-description:        "This is a place for my musings on the science of computers and different technologies"
+bio:                'code_monkey | metalhead | juventino'
+description:        "My musings on science, technologies, music and football."
 reading_time:       true
 words_per_minute:   200
 logo:               'assets/img/logo.png'
@@ -38,7 +38,7 @@ disqus_shortname:   dhawalverma
   #ad-slot:
 #bing-verify:
 email:              dhawalverma@icloud.com
-twitter:            dhaw
+#twitter:            dhaw
 facebook:           dhawal.verma
 github-url:         dverma
 #stackoverflow:     123456/username   from a "http://stackoverflow.com/users/123456/username" link
