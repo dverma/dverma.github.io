@@ -7,7 +7,7 @@ comments: false
 ---
 <center>
 <img style="border-radius: 50%;height: 30%;width: 30%;"
-    src="http://ghostblog-dhawal.rhcloud.com/content/images/2015/09/IMG_5028-1-1.JPG"
+    src="https://dverma.github.com/assets/img/dhawal.JPG"
     title="POSER ALERT! Yes, that's me posing with my guitar that I can barely play!">
 code_monkey | metalhead | juventino
 </center>
