@@ -1,2 +1,1 @@
-# dverma.github.io
-Personal Website
+[Personal Website](www.dhawalverma.com)
