@@ -16,7 +16,7 @@ comments: true
 ---
 # 🎤 Juve Commentator 
 
-I built this app to silently run as a daemon on my raspberry pi and look for tweets from Juventus FC's twitter stream and on match days will convert the tweets during the game into speech and announce it on the speaker.
+I built this app to silently run as a daemon on my raspberry pi and look for tweets from Juventus FC's twitter stream and on match days convert the tweets during the game into speech and announce it on the speaker.
 
 ## Motivation
 
