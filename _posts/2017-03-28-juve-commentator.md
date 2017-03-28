@@ -2,7 +2,7 @@
 layout: post
 title:  "Juve Commentator"
 date:   2017-03-28
-excerpt: "Listen to the match highlights when they happen! "
+excerpt: "A text-to-speech util for listening to Official Juventus FC's tweets during a Juventus match"
 tag:
 - NodeJS
 - Twitter
