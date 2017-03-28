@@ -20,8 +20,9 @@ I built this app to silently run as a daemon on my [raspberry pi](https://www.ra
 
 ## Motivation
 
-The motivation behind this app was simple; being a huge juventus fan I wanted to stay updated with scores and important highlights as they happen (well, with the latency of someone watching and tweeting of course ).
+The motivation behind this app was simply the fact that coverage for Serie A in USA sucks and being a huge juventus fan I wanted to stay updated with scores and important highlights as they happened (well, with the latency of someone watching and tweeting of course ).
 Live Coverage of Serie-A in USA is very shoddy, most of the times the games aren't live on TV and sometimes there are delayed coverage.
+I had to look no further than Twitter for the solution.
 Juventus' media team are exceptionally good in covering the matches with live tweets and that gave me the idea of building an app that could continuosly listen to the tweets and during the match convert selective tweets(filtered through some rules) related to the match  into speech and speak them out.
 
 ## Tech Stack
