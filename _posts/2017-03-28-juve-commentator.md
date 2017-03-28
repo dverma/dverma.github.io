@@ -57,13 +57,19 @@ npm start
 ## Notes:
 
 This app will also work for any team whose twitter live tweets the match news in a specific format.
-```
-A tweet that starts with a number followed by '(1', 29' representing the minute in game) or HALF-TIME or FULL-TIME
-```
+> A tweet that starts with a number followed by '(1', 29' representing the minute in game) 
+or HALF-TIME or FULL-TIME
+
+![Juventus](https://cloud.githubusercontent.com/assets/1270335/24424510/794d7e3e-13c6-11e7-8f92-870716a19d06.png)
+---
+![Real Madrid](https://cloud.githubusercontent.com/assets/1270335/24424507/77aeaecc-13c6-11e7-87aa-cb5a32b02fde.png)
+
 For ex: Real Madrid and AC Milan follow the same convention of live tweeting during a match. 
 
 All you have to do to make this app work for your team is change the config.json to get the twitter id of the team's page from [here](http://gettwitterid.com/).
+
 For ex. 452155423 for Real Madrid(realmadriden) or 186386857 for AC Milan(@acmilan) in api_params -> follow
+
 To follow AC Milan replace api_params in config.json with :
 ```
   "api_params": {
