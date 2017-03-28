@@ -41,13 +41,13 @@ For the text-to-speech (tts)
 * Windows (comes with SAPI.SpVoice)
 
 If you dont have Festival installed on your linux distro, try the following command to install Festival as well as a default voice:
-```
+``` bash
 sudo apt-get install festival festvox-kallpc16k
 ```
 
 ## Installation
 
-```
+``` bash
 git clone https://github.com/dverma/juve-commentator.git
 cd juve-commentator
 npm install
@@ -72,7 +72,7 @@ All you have to do to make this app work for your team is change the config.json
 For ex. 452155423 for Real Madrid(realmadriden) or 186386857 for AC Milan(@acmilan) in api_params -> follow
 
 To follow AC Milan replace api_params in config.json with :
-```
+``` json
   "api_params": {
       "stall_warnings": "true",
       "follow": "186386857",
