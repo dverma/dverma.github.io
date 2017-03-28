@@ -14,7 +14,7 @@ image: 'https://cloud.githubusercontent.com/assets/1270335/24422920/d4bd8d50-13c
 feature: 'https://cloud.githubusercontent.com/assets/1270335/24422920/d4bd8d50-13c0-11e7-9de6-20ee12635363.png'
 comments: true
 ---
-# 🎤 Juve Commentator 
+# 🎤 [Juve Commentator](https://github.com/dverma/juve-commentator) 
 
 I built this app to silently run as a daemon on my [raspberry pi](https://www.raspberrypi.org/products/raspberry-pi-3-model-b/) and look for tweets from Juventus FC's twitter stream and on match days convert the tweets during the game into speech and announce it on the speaker.
 
