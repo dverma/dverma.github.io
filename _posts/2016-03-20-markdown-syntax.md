@@ -110,3 +110,6 @@ Press <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> to move your car. **Midto
 
 **Watch out!** You can also add notices by appending `{: .notice}` to a paragraph.
 {: .notice}
+
+
+<p><a href="https://celebrityhomesomaha.wistia.com/medias/grwde154ol?embedType=async&amp;seo=false&amp;videoWidth=600&amp;wvideo=grwde154ol"><img src="https://embedwistia-a.akamaihd.net/deliveries/690461b983228e6a3f8fb0d12fd8086a8a11f66f.jpg?image_play_button_size=2x&amp;image_crop_resized=960x540&amp;image_play_button=1&amp;image_play_button_color=7b796ae0" width="400" height="225" style="width: 400px; height: 225px;"></a></p><p><a href="https://celebrityhomesomaha.wistia.com/medias/grwde154ol?embedType=async&amp;seo=false&amp;videoWidth=600&amp;wvideo=grwde154ol">Concord...Advantage - celebrityhomesomaha</a></p>
