@@ -10,7 +10,7 @@ image: 'https://user-images.githubusercontent.com/1270335/35468793-ae3ff92c-02eb
 feature: 'https://user-images.githubusercontent.com/1270335/35468793-ae3ff92c-02eb-11e8-9fbc-22383df06f2f.jpg'
 comments: true
 ---
-#Machine Learning 🤖🤝👨🏻‍🏫
+# Machine Learning 🤖🤝👨🏻‍🏫
 
 Machine learning is a field which deals with training computers to learn behaviors using some form of data.
 A very simple and naive analogy that can be expressed to describe how machine learning works is through introspection of how humans get better in understanding life; it's through knowledge which in essence is nothing but data. A human brain is able to digest data, churn it up and use it as experiences to best anticipate the responses to any stimuli. Machine learning is the same process but for machines which at the moment can be treated as a brain of a toddler.
