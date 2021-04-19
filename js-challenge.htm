@@ -1,0 +1,95 @@
+<html>
+  <head />
+  <body>
+
+    <h2>The Challenge...</h2>
+    In the TextArea element at the bottom of the page, write the JavaScript that
+    will sort the buttons in the bottom portion of this page in ascending order
+    based on the number of vowels in the name of each button's associated state.
+    The button whose associated state has the fewest vowels should appear at the
+    top.
+    <p>
+      For our purposes vowels are defined as the letters a,e,i,o, and u in both
+      upper-case and lower-case.
+    </p>
+
+    <p>
+      When you click the "Evaluate" button, the JavaScript you've pasted into
+      the TextArea will be executed.
+    </p>
+
+    <p>
+      The successful solution will yield a list of buttons that will appear in
+      this order:
+    </p>
+    <p></p>
+    <p></p>
+    <div style="margin-left: 30">
+      Texas<br />
+      Florida<br />
+      Alabama<br />
+      California<br />
+      Louisiana
+    </div>
+    <p>
+      Once sorted, clicking each button should still display an alert() message
+      with the name of that associated state's capital city.
+    </p>
+    <br/>
+
+    <p>Good luck!</p>
+
+    <hr />
+    <p></p>
+    <div id="buttonList">
+      <input
+        type="button"
+        id="Alabama"
+        value="Alabama"
+        onclick="alert('Montgomery');"
+      />
+      <p>
+        <input
+          type="button"
+          id="California"
+          value="California"
+          onclick="alert('Sacramento');"
+        />
+        <p>
+          <input
+            type="button"
+            id="Florida"
+            value="Florida"
+            onclick="alert('Tallahassee');"
+          />
+          <p>
+            <input
+              type="button"
+              id="Louisiana"
+              value="Louisiana"
+              onclick="alert('Baton Rouge');"
+            />
+            <p>
+              <input
+                type="button"
+                id="Texas"
+                value="Texas"
+                onclick="alert('Austin');"
+              />
+              <p></p>
+            </p>
+          </p>
+        </p>
+      </p>
+    </div>
+
+    <textarea id="javascriptcode" rows="20" cols="60"> </textarea>
+    <p>
+      <input
+        type="button"
+        value="Evaluate"
+        onclick="eval(document.getElementById('javascriptcode').value);"
+      />
+    </p>
+  </body>
+</html>
