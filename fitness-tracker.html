@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6-Week Fitness & Nutrition Tracker</title>
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2ecc71;
+            --danger: #e74c3c;
+            --warning: #f39c12;
+            --dark: #34495e;
+            --light: #ecf0f1;
+            --gray: #95a5a6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        h1, h2, h3, h4 {
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        header h1 {
+            color: white;
+        }
+        
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            list-style: none;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .nav-tabs li {
+            margin-bottom: -1px;
+        }
+        
+        .nav-tabs button {
+            padding: 10px 20px;
+            border: 1px solid transparent;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            cursor: pointer;
+            background-color: transparent;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .nav-tabs button:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .nav-tabs button.active {
+            border-color: #ddd #ddd #fff;
+            background-color: white;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background-color: white;
+            border-radius: 0 0 4px 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .dashboard-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .card-primary {
+            border-top: 3px solid var(--primary);
+        }
+        
+        .card-secondary {
+            border-top: 3px solid var(--secondary);
+        }
+        
+        .card-warning {
+            border-top: 3px solid var(--warning);
+        }
+        
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .card .value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .card .label {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        
+        table th {
+            background-color: #f9f9f9;
+            font-weight: 600;
+        }
+        
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .progress-container {
+            margin-bottom: 15px;
+        }
+        
+        .progress-bar {
+            height: 20px;
+            background-color: #eee;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background-color: var(--secondary);
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        button {
+            padding: 10px 15px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        .button-secondary {
+            background-color: var(--secondary);
+        }
+        
+        .button-secondary:hover {
+            background-color: #27ae60;
+        }
+        
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .checkbox-container input {
+            width: auto;
+            margin-right: 10px;
+        }
+        
+        .meal-card, .exercise-card {
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .meal-card h4, .exercise-card h4 {
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .meal-items, .exercise-items {
+            margin-bottom: 10px;
+        }
+        
+        .macro-info {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .macro-item {
+            text-align: center;
+            padding: 5px 0;
+        }
+        
+        .workout-plan {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .workout-day {
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 15px;
+        }
+        
+        .workout-day h3 {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .exercise-item {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .exercise-details {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5px;
+        }
+        
+        .week-selector {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .week-btn {
+            padding: 5px 15px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .week-btn.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .chart-container {
+            height: 300px;
+            margin-bottom: 20px;
+        }
+        
+        .food-log-form, .exercise-log-form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .tooltip-text {
+            visibility: hidden;
+            width: 200px;
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            border-radius: 6px;
+            padding: 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .meal-option {
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .meal-option h4 {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        .meal-details {
+            margin-bottom: 10px;
+        }
+
+        .meal-nutrition {
+            display: flex;
+            justify-content: space-between;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            padding: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .workout-plan {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>6-Week Fitness & Nutrition Tracker</h1>
+            <p>Track your meals, exercises, and progress to reach your fitness goals</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <nav>
+            <ul class="nav-tabs">
+                <li><button class="tab-btn active" data-tab="dashboard">Dashboard</button></li>
+                <li><button class="tab-btn" data-tab="meal-tracker">Meal Tracker</button></li>
+                <li><button class="tab-btn" data-tab="exercise-tracker">Exercise Tracker</button></li>
+                <li><button class="tab-btn" data-tab="progress">Progress</button></li>
+                <li><button class="tab-btn" data-tab="plan-reference">Plan Reference</button></li>
+            </ul>
+        </nav>
+        
+        <!-- Dashboard Tab -->
+        <div id="dashboard" class="tab-content active">
+            <h2>Your Progress Dashboard</h2>
+            
+            <div class="dashboard-cards">
+                <div class="card card-primary">
+                    <h3>Current Weight</h3>
+                    <div class="value">192.0</div>
+                    <div class="label">lbs</div>
+                </div>
+                
+                <div class="card card-primary">
+                    <h3>Target Weight</h3>
+                    <div class="value">175.0</div>
+                    <div class="label">lbs</div>
+                </div>
+                
+                <div class="card card-secondary">
+                    <h3>Weight Lost</h3>
+                    <div class="value">0.0</div>
+                    <div class="label">lbs</div>
+                </div>
+                
+                <div class="card card-warning">
+                    <h3>Calories Today</h3>
+                    <div class="value">0</div>
+                    <div class="label">/ 1620 target</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Weight Loss Progress</h3>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 5px;">
+                        <span>192 lbs</span>
+                        <span>175 lbs</span>
+                    </div>
+                </div>
+                <p>0% complete – 17 lbs to go!</p>
+            </div>
+            
+            <div style="margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div class="card">
+                    <h3>Today's Nutrition</h3>
+                    <table>
+                        <tr>
+                            <th>Macronutrient</th>
+                            <th>Goal</th>
+                            <th>Consumed</th>
+                        </tr>
+                        <tr>
+                            <td>Calories</td>
+                            <td>1,620</td>
+                            <td id="calories-consumed">0</td>
+                        </tr>
+                        <tr>
+                            <td>Protein</td>
+                            <td>122g</td>
+                            <td id="protein-consumed">0g</td>
+                        </tr>
+                        <tr>
+                            <td>Carbs</td>
+                            <td>162g</td>
+                            <td id="carbs-consumed">0g</td>
+                        </tr>
+                        <tr>
+                            <td>Fat</td>
+                            <td>54g</td>
+                            <td id="fat-consumed">0g</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="card">
+                    <h3>Today's Workout</h3>
+                    <div id="todays-workout">
+                        <h4>Day 1: Lower Body + Cardio</h4>
+                        <ul style="list-style-type: none; padding: 0;">
+                            <li class="checkbox-container">
+                                <input type="checkbox" id="exercise1"> 
+                                <label for="exercise1">Goblet Squats: 3 sets × 10 reps</label>
+                            </li>
+                            <li class="checkbox-container">
+                                <input type="checkbox" id="exercise2"> 
+                                <label for="exercise2">Romanian Deadlifts: 3 sets × 10 reps</label>
+                            </li>
+                            <li class="checkbox-container">
+                                <input type="checkbox" id="exercise3"> 
+                                <label for="exercise3">Walking Lunges: 2 sets × 10 steps each leg</label>
+                            </li>
+                            <li class="checkbox-container">
+                                <input type="checkbox" id="exercise4"> 
+                                <label for="exercise4">Calf Raises: 2 sets × 15 reps</label>
+                            </li>
+                            <li class="checkbox-container">
+                                <input type="checkbox" id="exercise5"> 
+                                <label for="exercise5">Glute Bridges: 3 sets × 12 reps</label>
+                            </li>
+                            <li class="checkbox-container">
+                                <input type="checkbox" id="exercise6"> 
+                                <label for="exercise6">Cardio: 8 minutes interval</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Meal Tracker Tab -->
+        <div id="meal-tracker" class="tab-content">
+            <h2>Meal Tracker</h2>
+            
+            <div class="food-log-form">
+                <h3>Log Your Food</h3>
+                <div class="form-group">
+                    <label for="meal-type">Meal Type</label>
+                    <select id="meal-type">
+                        <option value="breakfast">Breakfast</option>
+                        <option value="lunch">Lunch</option>
+                        <option value="dinner">Dinner</option>
+                        <option value="snack">Snack</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="food-item">Food Item</label>
+                    <select id="food-item">
+                        <option value="">Select a food item</option>
+                        <optgroup label="Breakfast Options">
+                            <option value="eggs">Eggs (3 whites + 1 whole)</option>
+                            <option value="oatmeal">Oatmeal (1/2 cup)</option>
+                            <option value="almond-butter">Almond Butter (1 tbsp)</option>
+                            <option value="berries">Berries (1/2 cup)</option>
+                        </optgroup>
+                        <optgroup label="Lunch/Dinner Options">
+                            <option value="chicken-breast">Chicken Breast (4 oz)</option>
+                            <option value="brown-rice">Brown Rice (1 cup)</option>
+                            <option value="mixed-vegetables">Mixed Vegetables (1 cup)</option>
+                            <option value="olive-oil">Olive Oil (1 tbsp)</option>
+                            <option value="lean-protein">Lean Protein (4 oz)</option>
+                            <option value="green-vegetables">Green Vegetables (2 cups)</option>
+                            <option value="sweet-potato">Sweet Potato (1 medium)</option>
+                        </optgroup>
+                        <optgroup label="Snack Options">
+                            <option value="protein-shake">Protein Shake</option>
+                            <option value="greek-yogurt">Greek Yogurt with Berries</option>
+                            <option value="apple-peanut-butter">Apple with Peanut Butter</option>
+                            <option value="nuts">Nuts (1/4 cup)</option>
+                            <option value="hard-boiled-eggs">Hard-Boiled Eggs (2)</option>
+                        </optgroup>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="serving-size">Serving Size</label>
+                    <input type="number" id="serving-size" min="0.25" max="5" step="0.25" value="1">
+                </div>
+                
+                <button type="button" id="log-food-btn" class="button-secondary">Log Food</button>
+            </div>
+            
+            <h3>Today's Food Log</h3>
+            <div id="food-log-items">
+                <!-- Food log items will be added here -->
+                <div class="meal-card">
+                    <h4>Breakfast</h4>
+                    <div class="meal-items">No items logged yet</div>
+                </div>
+                
+                <div class="meal-card">
+                    <h4>Lunch</h4>
+                    <div class="meal-items">No items logged yet</div>
+                </div>
+                
+                <div class="meal-card">
+                    <h4>Dinner</h4>
+                    <div class="meal-items">No items logged yet</div>
+                </div>
+                
+                <div class="meal-card">
+                    <h4>Snacks</h4>
+                    <div class="meal-items">No items logged yet</div>
+                </div>
+            </div>
+            
+            <h3>Sample Meal Options</h3>
+            <div class="meal-option">
+                <h4>Breakfast (~450 calories)</h4>
+                <ul>
+                    <li>3 egg whites + 1 whole egg scrambled (25g protein)</li>
+                    <li>1/2 cup oatmeal with cinnamon (27g carbs)</li>
+                    <li>1 tablespoon almond butter (8g fat)</li>
+                    <li>1/2 cup berries (10g carbs)</li>
+                </ul>
+                <div class="meal-nutrition">
+                    <div>Protein: 25g</div>
+                    <div>Carbs: 37g</div>
+                    <div>Fat: 8g</div>
+                </div>
+            </div>
+            
+            <div class="meal-option">
+                <h4>Lunch (~500 calories)</h4>
+                <ul>
+                    <li>4 oz grilled chicken breast (28g protein)</li>
+                    <li>1 cup cooked brown rice or quinoa (45g carbs)</li>
+                    <li>1 cup mixed vegetables (10g carbs, 3g protein)</li>
+                    <li>1 tablespoon olive oil for cooking/dressing (14g fat)</li>
+                </ul>
+                <div class="meal-nutrition">
+                    <div>Protein: 31g</div>
+                    <div>Carbs: 55g</div>
+                    <div>Fat: 14g</div>
+                </div>
+            </div>
+            
+            <div class="meal-option">
+                <h4>Dinner (~500 calories)</h4>
+                <ul>
+                    <li>4 oz lean protein (chicken, fish, or lean beef) (28g protein)</li>
+                    <li>2 cups green vegetables (10g carbs, 4g protein)</li>
+                    <li>1 medium sweet potato (25g carbs)</li>
+                    <li>1 tablespoon healthy fat (olive oil, avocado) (14g fat)</li>
+                </ul>
+                <div class="meal-nutrition">
+                    <div>Protein: 32g</div>
+                    <div>Carbs: 35g</div>
+                    <div>Fat: 14g</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Exercise Tracker Tab -->
+        <div id="exercise-tracker" class="tab-content">
+            <h2>Exercise Tracker</h2>
+            
+            <div class="week-selector">
+                <button class="week-btn active" data-week="1">Week 1</button>
+                <button class="week-btn" data-week="2">Week 2</button>
+                <button class="week-btn" data-week="3">Week 3</button>
+                <button class="week-btn" data-week="4">Week 4</button>
+                <button class="week-btn" data-week="5">Week 5</button>
+                <button class="week-btn" data-week="6">Week 6</button>
+            </div>
+            
+            <div class="workout-plan" id="week1-workouts">
+                <div class="workout-day">
+                    <h3>Day 1: Lower Body + Cardio</h3>
+                    
+                    <div class="exercise-item">
+                        <strong>Goblet Squats</strong> 
+                        <div class="tooltip">ⓘ
+                            <span class="tooltip-text">Hold a dumbbell at chest level with both hands, perform a squat while keeping your back straight. Shoulder-safe.</span>
+                        </div>
+                        <div class="exercise-details">
+                            <span>3 sets × 10 reps</span>
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="ex1-1">
+                                <label for="ex1-1">Completed</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise-item">
+                        <strong>Romanian Deadlifts</strong>
+                        <div class="tooltip">ⓘ
+                            <span class="tooltip-text">Hold weights at your sides, hinge at the hips keeping back flat and knees slightly bent. Keep weights close to legs.</span>
+                        </div>
+                        <div class="exercise-details">
+                            <span>3 sets × 10 reps</span>
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="ex1-2">
+                                <label for="ex1-2">Completed</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise-item">
+                        <strong>Walking Lunges</strong>
+                        <div class="tooltip">ⓘ
+                            <span class="tooltip-text">Step forward with one leg, lower your body until both knees are bent at 90 degrees, then bring the back leg forward.</span>
+                        </div>
+                        <div class="exercise-details">
+                            <span>2 sets × 10 steps each leg</span>
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="ex1-3">
+                                <label for="ex1-3">Completed</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise-item">
+                        <strong>Calf Raises</strong>
+                        <div class="tooltip">ⓘ
+                            <span class="tooltip-text">Stand with feet hip-width apart, rise up onto the balls of your feet, then lower back down.</span>
+                        </div>
+                        <div class="exercise-details">
+                            <span>2 sets × 15 reps</span>
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="ex1-4">
+                                <label for="ex1-4">Completed</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise-item">
+                        <strong>Glute Bridges</strong>
+                        <div class="tooltip">ⓘ
+                            <span class="tooltip-text">Lie on your back with knees bent, feet flat. Lift hips up by squeezing glutes, creating a straight line from knees to shoulders.</span>
+                        </div>
+                        <div class="exercise-details">
+                            <span>3 sets × 12 reps</span>
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="ex1-5">
+                                <label for="ex1-5">Completed</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise-item">
+                        <strong>Cardio Intervals</strong>
+                        <div class="tooltip">ⓘ
+                            <span class="tooltip-text">8 minutes of intervals: 45 seconds work (moderate-high intensity) followed by 45 seconds recovery.</span>
+                        </div>
+                        <div class="exercise-details">
+                            <span>8 minutes total</span>
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="ex1-6">
+                                <label for="ex1-6">Completed</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="workout-day">
+                    <h3>Day 2: Upper Body + Core</h3>
+                    
+                    <div class="exercise-item">
+                        <strong>Dumbbell Chest Press</strong>
+                        <div class="tooltip">ⓘ
+                            <span class="tooltip-text">Lie on your back holding dumbbells with neutral grip (palms facing each other). Press weights up, then lower with control.</span>
+                        </div>
+                        <div class="exercise-details">
+                            <span>3 sets × 10 reps</span>
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="ex2-1">
+                                <label for="ex2-1">Completed</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise-item">
+                        <strong>One-Arm Dumbbell Rows</strong>
+                        <div class="tooltip">ⓘ
+                            <span class="tooltip-text">Support yourself with one hand on a bench, opposite leg forward. Pull dumbbell up to ribcage with free hand.</span>
+                        </div>
+                        <div class="exercise-details">
+                            <span>3 sets × 10 reps each arm</span>
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="ex2-2">
+                                <label for="ex2-2">Completed</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise-item">
+                        <strong>Resistance Band Pull-Aparts</strong>
+                        <div class="tooltip">ⓘ
+                            <span class="tooltip-text">Hold band with arms extended in front of you. Pull band apart by squeezing shoulder blades. Shoulder-safe.</span>
+                        </div>
+                        <div class="exercise-details">
+                            <span>3 sets × 12 reps</span>
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="ex2-3">
+                                <label for="ex2-3">Completed</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise-item">
+                        <strong>Dumbbell Bicep Curls</strong>
+                        <div class="tooltip">ⓘ
+                            <span class="tooltip-text">Hold dumbbells at sides with palms forward. Curl weights toward shoulders, keeping elbows close to body.</span>
+                        </div>
+                        <div class="exercise-details">
+                            <span>2 sets × 10 reps</span>
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="ex2-4">
+                                <label for="ex2-4">Completed</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise-item">
+                        <strong>Lying Tricep Extensions</strong>
+                        <div class="tooltip">ⓘ
+                            <span class="tooltip-text">Lie on back, hold dumbbells with arms extended up. Bend elbows to lower weights toward forehead, then extend arms.</span>
+                        </div>
+                        <div class="exercise-details">
+                            <span>2 sets × 10 reps</span>
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="ex2-5">
+                                <label for="ex2-5">Completed</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise-item">
+                        <strong>Plank</strong>
+                        <div class="tooltip">ⓘ
+                            <span class="tooltip-text">Support yourself on forearms and toes, keeping body in a straight line from head to heels.</span>
+                        </div>
+                        <div class="exercise-details">
+                            <span>3 sets × 20 seconds</span>
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="ex2-6">
+                                <label for="ex2-6">Completed</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise-item">
+                        <strong>Dead Bugs</strong>
+                        <div class="tooltip">ⓘ
+                            <span class="tooltip-text">Lie on back with arms extended up and legs at 90°. Lower opposite arm and leg while maintaining core engagement.</span>
+                        </div>
+                        <div class="exercise-details">
+                            <span>2 sets × 10 reps each side</span>
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="ex2-7">
+                                <label for="ex2-7">Completed</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="workout-day">
+                    <h3>Day 3: Full Body Circuit</h3>
+                    <p>Complete 3 rounds, resting 60 seconds between rounds</p>
+                    
+                    <div class="exercise-item">
+                        <strong>Bodyweight Squats</strong>
+                        <div class="tooltip">ⓘ
+                            <span class="tooltip-text">Stand with feet shoulder-width apart, lower your body as if sitting in a chair, then push back up.</span>
+                        </div>
+                        <div class="exercise-details">
+                            <span>12 reps</span>
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="ex3-1">
+                                <label for="ex3-1">Completed</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise-item">
+                        <strong>Modified Push-Ups</strong>
+                        <div class="tooltip">ⓘ
+                            <span class="tooltip-text">Perform push-ups with hands on an elevated surface to reduce load on shoulders. Keep body straight.</span>
+                        </div>
+                        <div class="exercise-details">
+                            <span>8-10 reps</span>
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="ex3-2">
+                                <label for="ex3-2">Completed</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise-item">
+                        <strong>Band Pulls</strong>
+                        <div class="tooltip">ⓘ
+                            <span class="tooltip-text">Attach band to fixed object at chest height. Pull handles toward body, squeezing shoulder blades.</span>
+                        </div>
+                        <div class="exercise-details">
+                            <span>12 reps</span>
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="ex3-3">
+                                <label for="ex3-3">Completed</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise-item">
+                        <strong>Step-Ups</strong>
+                        <div class="tooltip">ⓘ
+                            <span class="tooltip-text">Step up onto a platform with one foot, then bring the other foot up. Step back down in same order.</span>
+                        </div>
+                        <div class="exercise-details">
+                            <span>10 each leg</span>
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="ex3-4">
+                                <label for="ex3-4">Completed</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise-item">
+                        <strong>Bicycle Crunches</strong>
+                        <div class="tooltip">ⓘ
+                            <span class="tooltip-text">Lie on back with hands behind head. Bring elbow to opposite knee while extending other leg.</span>
+                        </div>
+                        <div class="exercise-details">
+                            <span>20 total</span>
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="ex3-5">
+                                <label for="ex3-5">Completed</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise-item">
+                        <strong>Cardio Intervals</strong>
+                        <div class="tooltip">ⓘ
+                            <span class="tooltip-text">8 minutes of intervals: 45 seconds work (moderate-high intensity) followed by 45 seconds recovery.</span>
+                        </div>
+                        <div class="exercise-details">
+                            <span>8 minutes total</span>
+                            <div class="checkbox-container">
+                                <input type="checkbox" id="ex3-6">
+                                <label for="ex3-6">Completed</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Progress Tab -->
+        <div id="progress" class="tab-content">
+            <h2>Track Your Progress</h2>
+            
+            <div class="card">
+                <h3>Weight Tracker</h3>
+                <div class="form-group">
+                    <label for="weight-input">Log Today's Weight (lbs)</label>
+                    <input type="number" id="weight-input" min="100" max="300" step="0.1">
+                    <button type="button" id="log-weight-btn">Log Weight</button>
+                </div>
+                
+                <div class="chart-container">
+                    <img src="/api/placeholder/800/300" alt="Weight tracking chart placeholder" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+            </div>
+            
+            <div class="card" style="margin-top: 20px;">
+                <h3>Body Measurements</h3>
+                <p>Record your measurements every 2 weeks</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;">
+                    <div class="form-group">
+                        <label for="waist-input">Waist (inches)</label>
+                        <input type="number" id="waist-input" min="20" max="60" step="0.1">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="hips-input">Hips (inches)</label>
+                        <input type="number" id="hips-input" min="20" max="60" step="0.1">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="chest-input">Chest (inches)</label>
+                        <input type="number" id="chest-input" min="20" max="60" step="0.1">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="arms-input">Arms (inches)</label>
+                        <input type="number" id="arms-input" min="5" max="25" step="0.1">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="thighs-input">Thighs (inches)</label>
+                        <input type="number" id="thighs-input" min="10" max="40" step="0.1">
+                    </div>
+                </div>
+                
+                <button type="button" id="log-measurements-btn" style="margin-top: 10px;">Log Measurements</button>
+                
+                <table style="margin-top: 20px;">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Waist</th>
+                            <th>Hips</th>
+                            <th>Chest</th>
+                            <th>Arms</th>
+                            <th>Thighs</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Week 1</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>Week 3</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>Week 5</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="card" style="margin-top: 20px;">
+                <h3>Fitness Progress</h3>
+                <p>Record your performance in these key exercises to track strength improvement</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;">
+                    <div class="form-group">
+                        <label for="goblet-squat-weight">Goblet Squat Weight (lbs)</label>
+                        <input type="number" id="goblet-squat-weight" min="0" max="100" step="2.5">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="row-weight">Dumbbell Row Weight (lbs)</label>
+                        <input type="number" id="row-weight" min="0" max="100" step="2.5">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="chest-press-weight">Chest Press Weight (lbs)</label>
+                        <input type="number" id="chest-press-weight" min="0" max="100" step="2.5">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="plank-time">Plank Time (seconds)</label>
+                        <input type="number" id="plank-time" min="0" max="300" step="5">
+                    </div>
+                </div>
+                
+                <button type="button" id="log-fitness-btn" style="margin-top: 10px;">Log Fitness Metrics</button>
+            </div>
+        </div>
+        
+        <!-- Plan Reference Tab -->
+        <div id="plan-reference" class="tab-content">
+            <h2>6-Week Plan Reference</h2>
+            
+            <div class="card">
+                <h3>Nutrition Plan Overview</h3>
+                <p>For a 38-year-old male at 5'8", 192 lbs with a sedentary lifestyle</p>
+                
+                <table>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Value</th>
+                        <th>Notes</th>
+                    </tr>
+                    <tr>
+                        <td>Basic metabolic rate</td>
+                        <td>~1,770 calories/day</td>
+                        <td>Calories burned at rest</td>
+                    </tr>
+                    <tr>
+                        <td>Total daily expenditure</td>
+                        <td>~2,120 calories/day</td>
+                        <td>Including daily activities</td>
+                    </tr>
+                    <tr>
+                        <td>Target for weight loss</td>
+                        <td>1,620 calories/day</td>
+                        <td>500-calorie deficit</td>
+                    </tr>
+                </table>
+                
+                <h4 style="margin-top: 15px;">Macronutrient Targets</h4>
+                <table>
+                    <tr>
+                        <th>Macronutrient</th>
+                        <th>Grams</th>
+                        <th>Percentage</th>
+                    </tr>
+                    <tr>
+                        <td>Protein</td>
+                        <td>122g</td>
+                        <td>30%</td>
+                    </tr>
+                    <tr>
+                        <td>Carbohydrates</td>
+                        <td>162g</td>
+                        <td>40%</td>
+                    </tr>
+                    <tr>
+                        <td>Fat</td>
+                        <td>54g</td>
+                        <td>30%</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="card" style="margin-top: 20px;">
+                <h3>Exercise Progression Overview</h3>
+                
+                <div style="margin-top: 15px;">
+                    <h4>Week 1: Foundation</h4>
+                    <p>Focus on proper form and establish baseline. Use lighter weights and focus on mind-muscle connection.</p>
+                </div>
+                
+                <div style="margin-top: 15px;">
+                    <h4>Week 2: Build</h4>
+                    <p>Increase repetitions while maintaining same weights. Focus on mind-muscle connection. Shorten rest periods slightly.</p>
+                </div>
+                
+                <div style="margin-top: 15px;">
+                    <h4>Week 3: Progress</h4>
+                    <p>Introduce slight weight increases where appropriate. Add exercise variations (e.g., single-leg glute bridges). Further reduce rest times.</p>
+                </div>
+                
+                <div style="margin-top: 15px;">
+                    <h4>Week 4: Intensity</h4>
+                    <p>Increase sets for key exercises. Focus on controlled eccentric (lowering) phase. Extend cardio intervals to 12 minutes.</p>
+                </div>
+                
+                <div style="margin-top: 15px;">
+                    <h4>Week 5: Challenge</h4>
+                    <p>Introduce more challenging variations. Continue progressive overload. Increase workout density.</p>
+                </div>
+                
+                <div style="margin-top: 15px;">
+                    <h4>Week 6: Peak</h4>
+                    <p>Maximize effort with good form. Challenge yourself with manageable weight increases. Extend cardio intervals to 15 minutes.</p>
+                </div>
+            </div>
+            
+            <div class="card" style="margin-top: 20px;">
+                <h3>Shoulder Safety Guidelines</h3>
+                
+                <ul style="margin-top: 10px; margin-left: 20px;">
+                    <li>Always perform the complete warm-up routine, especially the rotator cuff activation exercises</li>
+                    <li>If you feel unusual shoulder pain (not normal muscle fatigue), stop the exercise immediately</li>
+                    <li>Prioritize proper form over increasing weight</li>
+                    <li>Avoid extreme overhead movements and positions that place your shoulder at risk</li>
+                    <li>For pressing movements, keep elbows slightly tucked rather than flared out</li>
+                    <li>Consider reducing range of motion on any exercise that causes shoulder discomfort</li>
+                </ul>
+            </div>
+            
+            <div class="card" style="margin-top: 20px;">
+                <h3>Warm-Up Protocol (5-7 minutes before each workout)</h3>
+                
+                <div style="margin-top: 10px;">
+                    <h4>1. Light Cardio (3-5 minutes)</h4>
+                    <p>Walking or jogging on treadmill at a comfortable pace</p>
+                </div>
+                
+                <div style="margin-top: 10px;">
+                    <h4>2. Dynamic Mobility Work</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>Arm circles: 10 forward, 10 backward (small, controlled movements)</li>
+                        <li>Shoulder blade squeezes: 10 repetitions</li>
+                        <li>Hip circles: 5 each direction</li>
+                        <li>Bodyweight squats: 10 repetitions</li>
+                        <li>Gentle torso rotations: 5 each side</li>
+                    </ul>
+                </div>
+                
+                <div style="margin-top: 10px;">
+                    <h4>3. Rotator Cuff Activation with Resistance Band</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>External rotation: 10 repetitions each arm</li>
+                        <li>Internal rotation: 10 repetitions each arm</li>
+                        <li>Band pull-aparts: 10 repetitions</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="card" style="margin-top: 20px;">
+                <h3>Cool-Down Protocol (5 minutes after each workout)</h3>
+                
+                <div style="margin-top: 10px;">
+                    <h4>1. Light Cardio (1-2 minutes)</h4>
+                    <p>Walking at slow pace to gradually lower heart rate</p>
+                </div>
+                
+                <div style="margin-top: 10px;">
+                    <h4>2. Static Stretching (Hold each for 20-30 seconds)</h4>
+                    <ul style="margin-left: 20px;">
+                        <li>Hamstring stretch</li>
+                        <li>Quad stretch</li>
+                        <li>Gentle chest stretch</li>
+                        <li>Upper back/trapezius stretch</li>
+                        <li>Gentle shoulder stretch (avoiding extreme positions)</li>
+                    </ul>
+                </div>
+                
+                <div style="margin-top: 10px;">
+                    <h4>3. Deep Breathing</h4>
+                    <p>5 deep breaths, focusing on complete exhalation</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Tab navigation functionality
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.getAttribute('data-tab');
+                
+                // Update active button
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // Update active content
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === tabId) {
+                        content.classList.add('active');
+                    }
+                });
+            });
+        });
+        
+        // Food logging functionality (simplified demo)
+        const logFoodBtn = document.getElementById('log-food-btn');
+        let totalCalories = 0;
+        let totalProtein = 0;
+        let totalCarbs = 0;
+        let totalFat = 0;
+        
+        // Food data (simplified)
+        const foodData = {
+            "eggs": { name: "Eggs (3 whites + 1 whole)", calories: 145, protein: 25, carbs: 0, fat: 5 },
+            "oatmeal": { name: "Oatmeal (1/2 cup)", calories: 150, protein: 5, carbs: 27, fat: 3 },
+            "almond-butter": { name: "Almond Butter (1 tbsp)", calories: 100, protein: 3, carbs: 3, fat: 8 },
+            "berries": { name: "Berries (1/2 cup)", calories: 40, protein: 0, carbs: 10, fat: 0 },
+            "chicken-breast": { name: "Chicken Breast (4 oz)", calories: 140, protein: 28, carbs: 0, fat: 3 },
+            "brown-rice": { name: "Brown Rice (1 cup)", calories: 220, protein: 5, carbs: 45, fat: 2 },
+            "mixed-vegetables": { name: "Mixed Vegetables (1 cup)", calories: 50, protein: 3, carbs: 10, fat: 0 },
+            "olive-oil": { name: "Olive Oil (1 tbsp)", calories: 120, protein: 0, carbs: 0, fat: 14 },
+            "lean-protein": { name: "Lean Protein (4 oz)", calories: 140, protein: 28, carbs: 0, fat: 3 },
+            "green-vegetables": { name: "Green Vegetables (2 cups)", calories: 60, protein: 4, carbs: 10, fat: 0 },
+            "sweet-potato": { name: "Sweet Potato (1 medium)", calories: 110, protein: 2, carbs: 25, fat: 0 },
+            "protein-shake": { name: "Protein Shake", calories: 120, protein: 24, carbs: 2, fat: 1 },
+            "greek-yogurt": { name: "Greek Yogurt with Berries", calories: 150, protein: 15, carbs: 15, fat: 3 },
+            "apple-peanut-butter": { name: "Apple with Peanut Butter", calories: 200, protein: 5, carbs: 25, fat: 8 },
+            "nuts": { name: "Nuts (1/4 cup)", calories: 180, protein: 8, carbs: 6, fat: 15 },
+            "hard-boiled-eggs": { name: "Hard-Boiled Eggs (2)", calories: 140, protein: 12, carbs: 0, fat: 10 }
+        };
+        
+        logFoodBtn.addEventListener('click', () => {
+            const mealType = document.getElementById('meal-type').value;
+            const foodId = document.getElementById('food-item').value;
+            const servingSize = parseFloat(document.getElementById('serving-size').value);
+            
+            if (!foodId) {
+                alert("Please select a food item");
+                return;
+            }
+            
+            const food = foodData[foodId];
+            const mealContainer = document.querySelector(`.meal-card h4:contains("${mealType.charAt(0).toUpperCase() + mealType.slice(1)}")`).closest('.meal-card').querySelector('.meal-items');
+            
+            // Update meal display
+            if (mealContainer.textContent === "No items logged yet") {
+                mealContainer.textContent = "";
+            }
+            
+            const foodItem = document.createElement('div');
+            foodItem.textContent = `${food.name} (${servingSize}x) - ${Math.round(food.calories * servingSize)} cal`;
+            mealContainer.appendChild(foodItem);
+            
+            // Update totals
+            totalCalories += Math.round(food.calories * servingSize);
+            totalProtein += Math.round(food.protein * servingSize);
+            totalCarbs += Math.round(food.carbs * servingSize);
+            totalFat += Math.round(food.fat * servingSize);
+            
+            // Update dashboard
+            document.getElementById('calories-consumed').textContent = totalCalories;
+            document.getElementById('protein-consumed').textContent = totalProtein + "g";
+            document.getElementById('carbs-consumed').textContent = totalCarbs + "g";
+            document.getElementById('fat-consumed').textContent = totalFat + "g";
+            
+            alert(`Added ${food.name} to your ${mealType}!`);
+        });
+        
+        // Helper for jQuery-like selector
+        document.querySelectorAll = function(selector) {
+            return Array.from(document.querySelectorAll(selector));
+        };
+        
+        HTMLElement.prototype.contains = function(text) {
+            return this.textContent.includes(text);
+        };
+        
+        // Week selector in Exercise tab
+        const weekBtns = document.querySelectorAll('.week-btn');
+        
+        weekBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                weekBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                // In a full implementation, this would show different workout plans
+                alert(`Showing Week ${btn.getAttribute('data-week')} workouts`);
+            });
+        });
+        
+        // Weight logging (simplified demo)
+        const logWeightBtn = document.getElementById('log-weight-btn');
+        
+        logWeightBtn.addEventListener('click', () => {
+            const weightInput = document.getElementById('weight-input');
+            const weightValue = parseFloat(weightInput.value);
+            
+            if (!weightValue || weightValue < 100 || weightValue > 300) {
+                alert("Please enter a valid weight between 100 and 300 lbs");
+                return;
+            }
+            
+            // Update dashboard display
+            document.querySelector('.card-primary .value').textContent = weightValue.toFixed(1);
+            
+            // Calculate weight lost
+            const targetWeight = 175.0;
+            const startingWeight = 192.0;
+            const weightLost = startingWeight - weightValue;
+            document.querySelector('.card-secondary .value').textContent = weightLost.toFixed(1);
+            
+            // Update progress bar
+            const progressPercentage = (startingWeight - weightValue) / (startingWeight - targetWeight) * 100;
+            document.querySelector('.progress-fill').style.width = `${progressPercentage}%`;
+            document.querySelector('.progress-container + p').textContent = 
+                `${progressPercentage.toFixed(1)}% complete – ${(weightValue - targetWeight).toFixed(1)} lbs to go!`;
+            
+            alert(`Weight logged: ${weightValue} lbs`);
+        });
+        
+        // Measurements logging (simplified demo)
+        const logMeasurementsBtn = document.getElementById('log-measurements-btn');
+        
+        logMeasurementsBtn.addEventListener('click', () => {
+            const waist = document.getElementById('waist-input').value;
+            const hips = document.getElementById('hips-input').value;
+            const chest = document.getElementById('chest-input').value;
+            const arms = document.getElementById('arms-input').value;
+            const thighs = document.getElementById('thighs-input').value;
+            
+            if (!waist || !hips || !chest || !arms || !thighs) {
+                alert("Please enter all measurements");
+                return;
+            }
+            
+            alert("Measurements logged successfully!");
+        });
+        
+        // Fitness progress logging (simplified demo)
+        const logFitnessBtn = document.getElementById('log-fitness-btn');
+        
+        logFitnessBtn.addEventListener('click', () => {
+            const gobletSquat = document.getElementById('goblet-squat-weight').value;
+            const rowWeight = document.getElementById('row-weight').value;
+            const chestPress = document.getElementById('chest-press-weight').value;
+            const plankTime = document.getElementById('plank-time').value;
+            
+            if (!gobletSquat || !rowWeight || !chestPress || !plankTime) {
+                alert("Please enter all fitness metrics");
+                return;
+            }
+            
+            alert("Fitness progress logged successfully!");
+        });
+    </script>
+</body>
+</html>
