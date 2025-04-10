@@ -1,1 +1,1 @@
-[Personal Website](http://www.dhawalverma.com)
+[Personal Website](https://dverma.github.io)
